@@ -1,22 +1,18 @@
 /*global $, jQuery, alert, document, prompt, x, i*/
 function popup() {
-	if($('#master').children().length !== 0){
-		$('#master').empty();
+	if($('table').children().length !== 0){
+		$('table').empty();
 	};
-	var divside = prompt("Please type the number of square per side", 16);
-	var divheight = (960-(divside*1.5))/divside;
-	var divwidth = 960/divside;
-	var master = $('#master');
-	var blocks = '<div class="blocks"></div>';
-	var br = '<br>';
-	for( i = 0; i < divside; i++){
-		for( x  = 0; x < divside; x++){
-			master.append($(blocks));
-		}
-		master.append($(br));
-	}	
-	$('.blocks').css("height", divheight);
-	$('.blocks').css("width", divwidth);
+	var trside = prompt("Please type...", 16);
+	var trsize = (960-trside)/trside;
+	var master = $('table');
+	var cellnumber = '<td></td>';
+	cellnumber = '<tr>' + cellnumber.repeat(trside) + '</tr>';
+	cellnumber = cellnumber.repeat(trside);
+	master.append($(cellnumber));
+	$('td').css('height', trsize);
+	$('td').css('width', trsize);
+	$('td').css('background-color', '#00ff00');
 }
 
 function componentToHex(c) {
@@ -46,22 +42,23 @@ function icolor(rgb) {
 	
 }
 
-function hover(cor) {
-	if( $(cor).css("background-color") === 'rgb(0, 0, 0)' && $(cor).hasClass('black') === false){	
-		var newColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
-		$(cor).css("background-color", newColor);
+function hover(color) {
+	if($(color).css('background-color') === 'rgb(0, 255, 0)' && $(color).hasClass('black') === false){
+	var newColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+	$(color).css('background-color', newColor);
 	} else {
-		var cor2  = icolor($(cor).css("background-color"));
-		$(cor).css("background-color", cor2);
-		$(cor).addClass('black');
+		var color2  = icolor($(color).css("background-color"));
+		$(color).css("background-color", color2);
+		$(color).addClass('black');
 	}
+
 }
 
 $(document).ready(function(){
 	$('#creategrid').click(function(){
 		popup();
 	});
-	$(document).on('mouseenter', '.blocks', function() {
+	$(document).on('mouseenter', 'td', function(){
 		hover(this);
 	});
 

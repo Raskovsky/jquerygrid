@@ -63,15 +63,17 @@ body {
 	border: 0px;
 	height:960px;
 	margin: 30px;
-	background-color: #ffffff;
+	background-color: #00ffff;
 }
 
-.blocks {
-	background-color: #000000;
-	display: inline-block;
-	margin-bottom: -1px;
+table {
+	width: 100%;
 }
 
-br {
-	margin: 0px;
+td {
+	height: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000000;
 }
+
